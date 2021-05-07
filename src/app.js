@@ -4,6 +4,10 @@ const hbs = require("hbs");
 
 const app = express();
 
+// Utils
+const forecast = require("./utils/forecast");
+const geocode = require("./utils/geocode");
+
 // Variables and path for express config
 const port = process.env.PORT || 3000;
 const publicDirPath = path.join(__dirname, "../public");
@@ -21,17 +25,24 @@ app.get("/", (_req, res) => {
 });
 
 app.get("/weather", (req, res) => {
-  if (!req.query.address)
+  const addressQuery = req.query.address;
+  if (!addressQuery)
     return res.send({
       error: "Missing address query!",
     });
 
-  res.send({
-    location: req.query.address,
-    forecast: {
-      temp: 30,
-      desc: "Cloudy",
-    },
+  geocode(addressQuery, (error, { latitude, longtitude, location } = {}) => {
+    if (error) return res.send({ error });
+
+    forecast(latitude, longtitude, (error, forecastData) => {
+      if (error) return res.send({ error });
+
+      res.send({
+        forecast: forecastData,
+        location,
+        query: addressQuery,
+      });
+    });
   });
 });
 
