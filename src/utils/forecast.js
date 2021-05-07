@@ -9,10 +9,7 @@ const forecast = (lati, long, callback) => {
     } else if (body.error) {
       callback("Location not found", undefined);
     } else {
-      callback(
-        undefined,
-        `${body.current.weather_descriptions[0]}. It is currently ${body.current.temperature}C degress out, and feels like ${body.current.feelslike}C`
-      );
+      callback(undefined, body);
     }
   });
 };

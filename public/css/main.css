@@ -1,5 +1,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
+.swal-modal {
+  background-color: rgba(57, 57, 64, 0.95);
+}
+.swal-modal .swal-icon--info {
+  color: rgba(57, 57, 64, 0.95);
+  border: 4px solid #a5dc86;
+}
+.swal-modal .swal-icon--info::before,
+.swal-modal .swal-icon--info::after {
+  background-color: #a5dc86;
+}
+.swal-modal .swal-title,
+.swal-modal .swal-text {
+  color: #fff;
+}
+.swal-modal .swal-text {
+  text-align: center !important;
+}
+.swal-modal .swal-button {
+  border: none;
+  background-color: #4d4d53;
+  color: #fff;
+  font-weight: 600;
+}
+.swal-modal .swal-button:hover {
+  color: #fff;
+  background-color: #4d4d53 !important;
+}
+
 body,
 html {
   background-color: #181818;
@@ -9,5 +38,21 @@ html {
 }
 
 h3 {
+  font-weight: 600;
+}
+
+.form-control {
+  font-weight: 700;
+}
+
+.container-forecast {
+  padding: 20px;
+  border: 1px solid #fff;
+}
+
+.list-group-item {
+  background-color: #181818 !important;
+  color: #fff;
+  border-bottom: #fff !important;
   font-weight: 600;
 }

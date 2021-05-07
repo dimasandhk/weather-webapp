@@ -8,12 +8,12 @@ const app = express();
 const forecast = require("./utils/forecast");
 const geocode = require("./utils/geocode");
 
-// Variables and path for express config
+// Variables, path for express middleware
 const port = process.env.PORT || 3000;
 const publicDirPath = path.join(__dirname, "../public");
 const componentsPath = path.join(__dirname, "../views/components");
 
-// Setup handlebars engine + static dir
+// Setup handlebars + express middleware
 app.set("view engine", "hbs");
 app.use(express.static(publicDirPath));
 hbs.registerPartials(componentsPath);

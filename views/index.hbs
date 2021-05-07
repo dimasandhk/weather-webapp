@@ -6,24 +6,26 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="icon" href="img/weather.png">
     <title>Weather Web App</title>
   </head>
   <body>
     <div class="judul mt-5">
       <div class="container">
-        <h3 class="text-center">Weather Web App </h3>
-        <div class="row justify-content-center mt-3">
-          <div class="col-12 col-md-12 col-lg-8">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control shadow-none">
-              <button class="btn btn-dark shadow-none" type="button">Search</button>
-            </div>
-          </div>
-        </div>
+        <h3 class="text-center">Weather Web App (Global) </h3>
+        {{>input}}
+      </div>
+    </div>
+
+    <div class="isi-forecast">
+      <div class="container">
+        {{>card}}
       </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="js/index.js"></script>
   </body>
 </html>
