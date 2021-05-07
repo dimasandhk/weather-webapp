@@ -20,13 +20,14 @@ app.get("/", (_req, res) => {
   });
 });
 
-app.get("/about", (_req, res) => {
-  res.render("about");
-});
+app.get("/weather", (req, res) => {
+  if (!req.query.address)
+    return res.send({
+      error: "Missing address query!",
+    });
 
-app.get("/weather", (_req, res) => {
   res.send({
-    location: "Jakarta",
+    location: req.query.address,
     forecast: {
       temp: 30,
       desc: "Cloudy",
