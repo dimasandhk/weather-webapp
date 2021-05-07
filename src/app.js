@@ -28,7 +28,7 @@ app.get("/weather", (req, res) => {
   const addressQuery = req.query.address;
   if (!addressQuery)
     return res.send({
-      error: "Missing address query!",
+      error: "Address must be provided!",
     });
 
   geocode(addressQuery, (error, { latitude, longtitude, location } = {}) => {
