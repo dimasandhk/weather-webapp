@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/app",
+    "dev": "nodemon src/app -e js,hbs,json",
     "start": "node src/app.js"
   },
   "keywords": [],
