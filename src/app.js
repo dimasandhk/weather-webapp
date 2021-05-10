@@ -46,6 +46,10 @@ app.get("/weather", (req, res) => {
   });
 });
 
+app.get("*", (_req, res) => {
+  res.render("404");
+});
+
 app.listen(port, () =>
   console.log(`Server is up on http://localhost:${port}/`)
 );
