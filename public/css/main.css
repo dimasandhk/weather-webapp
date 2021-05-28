@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
+#nprogress .spinner-icon {
+  display: none;
+}
+
+#nprogress .bar {
+  background-color: #fff;
+}
+
 .swal-modal {
   background-color: rgba(57, 57, 64, 0.95);
 }
@@ -55,4 +63,21 @@ h3 {
   color: #fff;
   border-bottom: #fff !important;
   font-weight: 600;
+}
+
+.form-control:focus {
+  outline: none;
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .row-desc {
+    text-align: center;
+  }
+  .weather-detail {
+    font-size: 16px;
+  }
+  .weather-location {
+    font-size: 12px;
+  }
 }

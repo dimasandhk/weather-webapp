@@ -6,6 +6,8 @@ document.querySelector(".form-control").addEventListener("keyup", (event) => {
 });
 
 const showData = async () => {
+  NProgress.start();
+
   const value = document.querySelector(".form-control").value;
   document.querySelector(".parent-forecast").innerHTML = /*html */ `
   <div class="container-forecast rounded">
@@ -20,14 +22,19 @@ const showData = async () => {
   `;
   const forecastData = await getForecastData(value);
 
-  if (forecastData.error) {
-    document.querySelector(".parent-forecast").innerHTML = "";
-    return swal("Error", forecastData.error, "error", {
-      timer: 2500,
-    });
-  }
+  if (forecastData.error) return addressNotFound(forecastData.error);
 
   assignForecastData(forecastData);
+  NProgress.done();
+
+};
+
+const addressNotFound = (err) => {
+  document.querySelector(".parent-forecast").innerHTML = "";
+  NProgress.done();
+  swal("Error", err, "error", {
+    timer: 2500,
+  });
 };
 
 const assignForecastData = (obj) => {
@@ -36,33 +43,34 @@ const assignForecastData = (obj) => {
 
   const isi = /*html*/ `
   <div class="container-forecast rounded">
-  <div class="img-container">
-    <img class="rounded" src="${detail.weather_icons[0]}" />
-  </div>
-  <h3 class="mt-2">${detail.temperature}°C, feels like ${detail.feelslike}°C (${
-    detail.is_day == "yes" ? "Day" : "Night"
-  })</h3>
-  <h5>${detail.weather_descriptions[0]} (${locate.localtime})</h5> 
-  <h6>${locationSvg} ${obj.location}</h6> 
-    <div class="row mt-3">
-      <div class="col-12 col-md-12 col-lg-6">
+    <div className="row justify-content-center text-center">
+      <div className="col-12 col-md-12 col-lg-12">
+          <img class="rounded" src="${detail.weather_icons[0]}" />
+      </div>
+    </div>
+        
+      <h3 class="mt-2">${detail.temperature}°C, feels like ${detail.feelslike}°C (${detail.is_day == "yes" ? "Day" : "Night"
+    })</h3>
+      <h5 class="weather-detail">${detail.weather_descriptions[0]} (${locate.localtime})</h5> 
+    
+    <h6 class="weather-location">${locationSvg} ${obj.location}</h6> 
+  <hr />
+    <div class="row mt-3 row-desc">
+      <div class="col-12 col-md-6 col-lg-6">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Wind Direction: ${
-            detail.wind_dir
-          } ${windSvg}</li>
-          <li class="list-group-item">Wind Speed: ${
-            detail.wind_speed
-          } KM/h ${windSvg}</li>
+          <li class="list-group-item">Wind Direction: ${detail.wind_dir
+    } ${windSvg}</li>
+          <li class="list-group-item">Wind Speed: ${detail.wind_speed
+    } KM/h ${windSvg}</li>
           <li class="list-group-item">Pressure: ${detail.pressure} mbar</li>
           <li class="list-group-item">Longtitude: ${locate.lon}</li>
         </ul>
       </div>
-      <div class="col-12 col-md-12 col-lg-6">
+      <div class="col-12 col-md-6 col-lg-6">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Humidity: ${detail.humidity}%</li>
-          <li class="list-group-item">Cloud Cover: ${
-            detail.cloudcover
-          }% ${cloudSvg}</li>
+          <li class="list-group-item">Cloud Cover: ${detail.cloudcover
+    }% ${cloudSvg}</li>
           <li class="list-group-item">Latitude: ${locate.lat}</li>
         </ul>
       </div>
